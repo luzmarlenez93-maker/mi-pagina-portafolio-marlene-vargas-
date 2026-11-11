@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marlene Luz Vargas Aduviri | Contadora General</title>
+<meta name="description" content="Portafolio de Marlene Luz Vargas Aduviri, contadora general.">
+<style>
+/* ===== COLORES Y BASE ===== */
+:root{
+  --morado:#6d5bd0; --lila:#e6e0f8; --crema:#fdf3ef; --texto:#2a2540;
+  --suave:#6b6682; --blanco:#fff; --sombra:0 10px 30px rgba(60,40,120,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--texto);background:var(--crema);line-height:1.6}
+section{padding:80px 20px}
+.contenedor{max-width:1000px;margin:0 auto}
+h2{font-size:2rem;margin-bottom:8px}
+h2::after{content:"";display:block;width:60px;height:5px;border-radius:5px;background:var(--morado);margin:8px 0 28px}
+a{color:inherit}
+
+/* ===== MENÚ ===== */
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(253,243,239,.92);backdrop-filter:blur(8px);transition:box-shadow .3s}
+header.sombra{box-shadow:0 2px 15px rgba(0,0,0,.1)}
+nav{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:12px 20px}
+.logo{font-weight:800;color:var(--morado);text-decoration:none;font-size:1.2rem}
+nav ul{display:flex;gap:22px;list-style:none}
+nav ul a{text-decoration:none;font-weight:600;font-size:.95rem}
+nav ul a:hover{color:var(--morado)}
+#btnMenu{display:none;background:none;border:0;font-size:1.8rem;cursor:pointer;color:var(--texto)}
+@media(max-width:760px){
+  #btnMenu{display:block}
+  nav ul{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--crema);box-shadow:var(--sombra);max-height:0;overflow:hidden;transition:max-height .35s}
+  nav ul.abierto{max-height:400px}
+  nav ul a{display:block;padding:14px 24px}
+}
+
+/* ===== INICIO ===== */
+#inicio{min-height:100vh;display:flex;align-items:center;padding-top:100px}
+.inicio-grid{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center}
+.foto{width:240px;height:300px;object-fit:cover;border-radius:24px;box-shadow:var(--sombra);border:6px solid var(--blanco);background:var(--lila)}
+.inicio-texto{flex:1;min-width:260px}
+.etiqueta{display:inline-block;background:var(--lila);color:var(--morado);font-weight:700;padding:6px 14px;border-radius:20px;font-size:.9rem}
+h1{font-size:clamp(2.2rem,7vw,3.6rem);line-height:1.1;margin:14px 0}
+.frase{color:var(--suave);font-size:1.1rem;margin-bottom:24px;max-width:520px}
+.boton{display:inline-block;background:var(--morado);color:#fff;padding:13px 28px;border-radius:30px;text-decoration:none;font-weight:700;border:0;cursor:pointer;font-size:1rem;transition:transform .2s,box-shadow .2s}
+.boton:hover{transform:translateY(-3px);box-shadow:var(--sombra)}
+.boton.claro{background:var(--lila);color:var(--morado);margin-left:8px}
+
+/* ===== TARJETAS ===== */
+.fondo{background:var(--blanco)}
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.tarjeta{background:var(--blanco);border-radius:18px;padding:24px;box-shadow:var(--sombra)}
+.fondo .tarjeta{background:var(--crema)}
+.tarjeta h3{margin-bottom:6px}
+.tarjeta .fecha{color:var(--morado);font-weight:700;font-size:.9rem}
+.tarjeta p{color:var(--suave)}
+.icono{font-size:2rem;margin-bottom:8px}
+
+/* ===== HABILIDADES ===== */
+.hab{margin-bottom:18px}
+.hab-top{display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px}
+.barra{height:12px;background:var(--lila);border-radius:10px;overflow:hidden}
+.barra span{display:block;height:100%;width:0;background:var(--morado);border-radius:10px;transition:width 1.2s ease}
+
+/* ===== FORMULARIO ===== */
+.contacto-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:30px}
+@media(max-width:760px){.contacto-grid{grid-template-columns:1fr}}
+.datos p{margin-bottom:12px}
+form{background:var(--crema);padding:24px;border-radius:18px;box-shadow:var(--sombra)}
+label{display:block;font-weight:600;margin:12px 0 5px}
+input,textarea{width:100%;padding:12px;border:2px solid var(--lila);border-radius:12px;font:inherit;background:#fff}
+input:focus,textarea:focus{outline:none;border-color:var(--morado)}
+textarea{min-height:120px;resize:vertical}
+.error{color:#c0392b;font-size:.85rem;min-height:1.1em}
+.trampa{position:absolute;left:-9999px}
+#respuesta{margin-top:14px;font-weight:700;text-align:center}
+.ok{color:#1e8449}.mal{color:#c0392b}
+footer{text-align:center;padding:24px;color:var(--suave);font-size:.9rem}
+
+/* ===== ANIMACIÓN AL BAJAR ===== */
+.aparece{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.aparece.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ===== MENÚ ===== -->
+<header id="cabecera">
+  <nav>
+    <a class="logo" href="#inicio">Marlene Vargas</a>
+    <button id="btnMenu" aria-label="Abrir menú">☰</button>
+    <ul id="menu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== INICIO ===== -->
+<section id="inicio">
+  <div class="contenedor inicio-grid">
+    <!-- Si la foto no carga, se oculta sola (ver JavaScript) -->
+    <img class="foto" src="foto.jpg" alt="Foto de Marlene Luz Vargas Aduviri">
+    <div class="inicio-texto">
+      <span class="etiqueta">Contadora General</span>
+      <h1>Marlene Luz<br>Vargas Aduviri</h1>
+      <p class="frase">Orden, honestidad y trabajo en equipo para cuidar las cuentas de tu negocio.</p>
+      <a class="boton" href="#contacto">Contáctame</a>
+      <a class="boton claro" href="#experiencia">Mi experiencia</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOBRE MÍ ===== -->
+<section id="sobre" class="fondo">
+  <div class="contenedor aparece">
+    <h2>Sobre mí</h2>
+    <p>Soy una persona sincera y neutra. Me gusta trabajar en equipo: trato a las personas con respeto y espero el mismo trato de vuelta.</p>
+    <p style="margin-top:12px">Soy mamá de una hija que va a la escuela y, al mismo tiempo, estudio Contabilidad General en la universidad. Me esfuerzo cada día por crecer en lo personal y en lo profesional.</p>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCIA Y FORMACIÓN ===== -->
+<section id="experiencia">
+  <div class="contenedor">
+    <h2 class="aparece">Experiencia y formación</h2>
+    <div class="tarjetas">
+      <div class="tarjeta aparece">
+        <div class="icono">🎓</div>
+        <span class="fecha">2024 – 2026</span>
+        <h3>Contabilidad General</h3>
+        <p>Universidad Católica Boliviana (UAC Tiahuanacu).</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono">💼</div>
+        <span class="fecha">2025</span>
+        <h3>Pasantías – Contabilidad</h3>
+        <p>UAC Tiahuanacu. Manejo de sistemas, plan de pagos y facturación.</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono">💇‍♀️</div>
+        <h3>Peinados y tejidos</h3>
+        <p>Trabajo independiente para mis ingresos económicos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HABILIDADES ===== -->
+<section id="habilidades" class="fondo">
+  <div class="contenedor aparece">
+    <h2>Habilidades</h2>
+    <!-- data-nivel = porcentaje de la barra; cámbialo si quieres -->
+    <div class="hab"><div class="hab-top"><span>Atención al detalle</span><span>90%</span></div><div class="barra"><span data-nivel="90"></span></div></div>
+    <div class="hab"><div class="hab-top"><span>Trabajo en equipo</span><span>90%</span></div><div class="barra"><span data-nivel="90"></span></div></div>
+    <div class="hab"><div class="hab-top"><span>Creatividad</span><span>85%</span></div><div class="barra"><span data-nivel="85"></span></div></div>
+    <div class="hab"><div class="hab-top"><span>Pensamiento visual</span><span>85%</span></div><div class="barra"><span data-nivel="85"></span></div></div>
+    <p style="margin-top:20px"><strong>Idiomas:</strong> Español (castellano) y cultura aymara.</p>
+  </div>
+</section>
+
+<!-- ===== SERVICIOS ===== -->
+<section id="servicios">
+  <div class="contenedor">
+    <h2 class="aparece">Servicios</h2>
+    <div class="tarjetas">
+      <div class="tarjeta aparece"><div class="icono">📒</div><h3>Contabilidad general</h3><p>Registro y orden de ingresos y gastos.</p></div>
+      <div class="tarjeta aparece"><div class="icono">🧾</div><h3>Facturación</h3><p>Emisión y control de facturas.</p></div>
+      <div class="tarjeta aparece"><div class="icono">💳</div><h3>Planes de pago</h3><p>Seguimiento de pagos y cuentas por cobrar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section id="contacto" class="fondo">
+  <div class="contenedor aparece">
+    <h2>Contacto</h2>
+    <div class="contacto-grid">
+      <div class="datos">
+        <p>📧 <a href="mailto:luzmarz.93@gmail.com">luzmarz.93@gmail.com</a></p>
+        <p>📱 <a href="tel:+59167161147">67161147</a></p>
+        <p>💬 <a href="https://wa.me/59167161147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a></p>
+      </div>
+
+      <form id="formulario" novalidate>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" autocomplete="name">
+        <div class="error" id="e-nombre"></div>
+
+        <label for="correo">Correo</label>
+        <input type="email" id="correo" name="correo" autocomplete="email">
+        <div class="error" id="e-correo"></div>
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje"></textarea>
+        <div class="error" id="e-mensaje"></div>
+
+        <!-- Campo trampa contra robots: debe quedar vacío -->
+        <input class="trampa" type="text" name="web" tabindex="-1" autocomplete="off">
+
+        <button class="boton" type="submit" id="btnEnviar" style="margin-top:12px;width:100%">Enviar mensaje</button>
+        <div id="respuesta" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="anio"></span> Marlene Luz Vargas Aduviri</footer>
+
+<script>
+/* ===== PEGA AQUÍ LA URL DE TU APLICACIÓN WEB DE GOOGLE (paso 5b) ===== */
+const URL_APPS_SCRIPT = "";https://script.google.com/macros/s/AKfycbwtO4lILNs67Edd46d9H4VVXFl8Pe38vDSQGT8Z7nFShwyKcyjvImXw7tiYIEykiDl6YA/exec
+
+/* ===== Año automático en el pie de página ===== */
+document.getElementById("anio").textContent = new Date().getFullYear();
+
+/* ===== Si la foto no existe, la ocultamos para que no se vea rota ===== */
+document.querySelector(".foto").addEventListener("error", e => e.target.style.display = "none");
+
+/* ===== MENÚ: abrir/cerrar en celular ===== */
+const menu = document.getElementById("menu");
+const btnMenu = document.getElementById("btnMenu");
+btnMenu.addEventListener("click", () => {
+  const abierto = menu.classList.toggle("abierto");
+  btnMenu.textContent = abierto ? "✕" : "☰";
+});
+// Al tocar un enlace del menú, se cierra solo
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+  menu.classList.remove("abierto");
+  btnMenu.textContent = "☰";
+}));
+
+/* ===== Sombra en el menú al bajar ===== */
+const cabecera = document.getElementById("cabecera");
+window.addEventListener("scroll", () => cabecera.classList.toggle("sombra", window.scrollY > 10));
+
+/* ===== ANIMACIONES al bajar (aparecen suavemente) ===== */
+const observador = new IntersectionObserver(entradas => {
+  entradas.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add("visible");
+    // Si dentro hay barras de habilidades, las llenamos
+    en.target.querySelectorAll(".barra span").forEach(b => b.style.width = b.dataset.nivel + "%");
+    observador.unobserve(en.target);
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll(".aparece").forEach(el => observador.observe(el));
+
+/* ===== FORMULARIO: validación y envío ===== */
+const form = document.getElementById("formulario");
+const respuesta = document.getElementById("respuesta");
+const btnEnviar = document.getElementById("btnEnviar");
+
+// Muestra u oculta un error debajo de un campo
+function marcar(campo, texto){
+  document.getElementById("e-" + campo).textContent = texto;
+  return texto === "";
+}
+
+function validar(){
+  const nombre = form.nombre.value.trim();
+  const correo = form.correo.value.trim();
+  const mensaje = form.mensaje.value.trim();
+  let ok = true;
+  ok = marcar("nombre", nombre.length >= 2 ? "" : "Escribe tu nombre.") && ok;
+  ok = marcar("correo", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) ? "" : "Escribe un correo válido.") && ok;
+  ok = marcar("mensaje", mensaje.length >= 5 ? "" : "Escribe un mensaje (mínimo 5 letras).") && ok;
+  return ok;
+}
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  respuesta.textContent = ""; respuesta.className = "";
+  if (!validar()) return;
+  if (form.web.value) return;              // un robot llenó la trampa: no enviar
+  if (URL_APPS_SCRIPT.includes("PEGA_AQUI")){
+    respuesta.textContent = "Falta pegar la URL de Apps Script en el código.";
+    respuesta.className = "mal"; return;
+  }
+
+  btnEnviar.disabled = true; btnEnviar.textContent = "Enviando...";
+  try{
+    // Enviamos como formulario simple (evita bloqueos de Google)
+    const datos = new URLSearchParams({
+      nombre: form.nombre.value.trim(),
+      correo: form.correo.value.trim(),
+      mensaje: form.mensaje.value.trim()
+    });
+    await fetch(URL_APPS_SCRIPT, { method:"POST", mode:"no-cors", body:datos });
+    respuesta.textContent = "¡Mensaje enviado!";
+    respuesta.className = "ok";
+    form.reset();
+  }catch(err){
+    respuesta.textContent = "No se pudo enviar. Intenta otra vez.";
+    respuesta.className = "mal";
+  }
+  btnEnviar.disabled = false; btnEnviar.textContent = "Enviar mensaje";
+});
+</script>
+</body>
+</html>
